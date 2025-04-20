@@ -24,9 +24,11 @@ class ModelTrainerConfig:
 
 class ModelTrainer:
     def __init__(self):
+        # This variable will use the trained model from the ModelTrainerConfig
         self.model_trainer_config=ModelTrainerConfig()
 
     def initiate_model_trainer(self, train_array, test_array):
+        #the arguments in the function are the outputs from the data transformation
         try:
             logging.info("Split training and test input data")
             X_train,y_train,X_test,y_test=(
@@ -59,7 +61,7 @@ class ModelTrainer:
 
             if best_model_score < 0.6:
                 raise CustomException("No best model found")
-            logging.info(f"Best found model on both training and testing dataset")
+            logging.info(f"Best model found on both training and testing dataset")
 
             save_object(
                 file_path=self.model_trainer_config.trained_model_file_path,
@@ -71,5 +73,5 @@ class ModelTrainer:
             r2_square = r2_score(y_test, predicted)
             return r2_square
 
-        except CustomException as e:
+        except Exception as e:
             raise CustomException(e, sys)

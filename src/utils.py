@@ -25,7 +25,7 @@ def save_object(file_path,obj):
 def evaluate_models(X_train, y_train, X_test, y_test, models) :
     try:
         report = {}
-
+        # this for-loop will go through all the models in the list under model_trainer.py
         for i in range(len(list(models))):
 
             model = list(models.values())[i]
